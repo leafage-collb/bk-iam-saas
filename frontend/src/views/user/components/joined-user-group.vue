@@ -243,6 +243,7 @@
              * 获取权限模板列表
              */
             async fetchPermGroups (isTableLoading = false, isPageLoading = false) {
+                console.log('触发2');
                 this.tableLoading = isTableLoading;
                 this.pageLoading = isPageLoading;
                 const { type } = this.data;
@@ -263,6 +264,9 @@
                         ellipsisLine: 2,
                         ellipsisCopy: true
                     });
+                    if (window.localStorage.getItem('index') === '0' && e.response.status === 403) {
+                        this.$router.push({ path: '/my-perm' });
+                    }
                 } finally {
                     this.tableLoading = false;
                     this.pageLoading = false;
